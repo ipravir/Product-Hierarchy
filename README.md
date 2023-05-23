@@ -1,4 +1,5 @@
 # Product-Hierarchy
 SAP Product Hierarchy Report on SAP GUI, SAP Build App and IOS Devices
-<img src="https://github.com/ipravir/Product-Hierarchy/tree/main/Images/Product-Hierarchy-SAP-GUI1-copy.jpg" alt="Alt text" title="Optional title">
+![Alt text](https://github.com/ipravir/Product-Hierarchy/blob/7a5b1b8ac057f943a9ffa20f012656c01878424f/Images/Product-Hierarchy-SAP-GUI1-copy.jpg)
+
 
