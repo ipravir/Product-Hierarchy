@@ -20,7 +20,7 @@ By enhancing the report with SAP Fiori iOS SDK, users can benefit from features 
 
 In summary, the blog introduces a procedure for developing a generic report to display product hierarchy in SAP, regardless of the maintained IDs. Additionally, it explores the potential of extending this report to an iOS application using SAP Fiori iOS SDK and SAP Build App, enabling users to access and interact with the product hierarchy on their Apple devices and other devices (using Browser).
 
-Product Hierarchy on SAP GUI
+## Product Hierarchy on SAP GUI
 
 I have utilised the CL_GUI_SIMPLE_TREE class within the SAP GUI screen to present a comprehensive representation of the Product Hierarchy, which is stored in the T179 table.
 
