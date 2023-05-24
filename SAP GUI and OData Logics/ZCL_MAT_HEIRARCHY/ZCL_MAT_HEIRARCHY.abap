@@ -98,10 +98,7 @@ private section.
     for event NODE_DOUBLE_CLICK of CL_GUI_SIMPLE_TREE
     importing
       !NODE_KEY .
-  methods HANDLE_EXPAND_NO_CHILDREN
-    for event EXPAND_NO_CHILDREN of CL_GUI_SIMPLE_TREE
-    importing
-      !NODE_KEY .
+
   methods GET_NEW_PARENT
     returning
       value(RV_ID) type TV_NODEKEY .
@@ -588,34 +585,6 @@ CLASS ZCL_MAT_HEIRARCHY IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_MAT_HEIRARCHY->HANDLE_EXPAND_NO_CHILDREN
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] NODE_KEY                       LIKE
-* +--------------------------------------------------------------------------------------</SIGNATURE>
-  METHOD handle_expand_no_children.
-    DATA: lt_node_table TYPE STANDARD TABLE OF mtreesnode.
-    gv_event = 'EXPAND_NO_CHILDREN'.
-    gv_node_key = node_key.
-    IF node_key = 'Child1'.                                 "#EC NOTEXT
-      APPEND VALUE: #( node_key = 'New1' relatkey = 'Child1' relatship = cl_gui_simple_tree=>relat_last_child isfolder = space text = 'New1' ) TO lt_node_table,
-      #( node_key = 'New2' relatkey = 'Child1' relatship = cl_gui_simple_tree=>relat_last_child n_image = '@10@' expander = space text = 'New2' ) TO lt_node_table.
-      CALL METHOD go_tree->add_nodes
-        EXPORTING
-          table_structure_name           = 'MTREESNODE'
-          node_table                     = lt_node_table
-        EXCEPTIONS
-          failed                         = 1
-          error_in_node_table            = 2
-          dp_error                       = 3
-          table_structure_name_not_found = 4
-          OTHERS                         = 5.
-      IF sy-subrc EQ 0.
-        RETURN.
-      ENDIF.
-    ENDIF.
-  ENDMETHOD.
-
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
 * | Instance Private Method ZCL_MAT_HEIRARCHY->HANDLE_ITEM_CTMENU_REQUEST
@@ -743,8 +712,8 @@ CLASS ZCL_MAT_HEIRARCHY IMPLEMENTATION.
             cntl_system_error         = 2
             illegal_event_combination = 3.
         IF sy-subrc EQ 0.
-          SET HANDLER : handle_node_double_click FOR go_tree,
-                        handle_expand_no_children FOR go_tree.
+          SET HANDLER : handle_node_double_click FOR go_tree.
+                        
 *                        handle_item_ctmenu_request FOR go_tree.
           gt_hirarchy_table = build_node_table( ).
           CALL METHOD go_tree->add_nodes
